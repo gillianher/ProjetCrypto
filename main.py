@@ -14,8 +14,12 @@ def encrypt_file():
     # Logique de chiffrement ici
     selected_method = encryption_method_var.get()
     if (selected_method=="Symétrique"):
-        tpchiffraes.aes(file_var,encrypted_file_var,decrypted_folder_var)
-
+        print(str(file_var.get()))
+        print(encrypted_file_var.get())
+        encfilepath= str(encrypted_folder_var.get())+"/"+str(encrypted_file_var.get())
+        decfilepath=str(decrypted_folder_var.get())+"/"+str(decrypted_file_var.get())
+        tpchiffraes.chiffraes(file_var.get(),encrypted_file_var.get(),decrypted_file_var.get(),encfilepath,decfilepath)
+       
 def decrypt_file():
     # Logique de déchiffrement ici
     pass
