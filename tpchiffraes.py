@@ -1,6 +1,7 @@
 from cryptography.fernet import Fernet
 
-def aes(file,encfile,decfile):
+
+def chiffraes(file,encfile,encpath):
 # Générer la clé
     key = Fernet.generate_key()
     fernetAlgo = Fernet(key)
@@ -18,17 +19,17 @@ def aes(file,encfile,decfile):
     with open(encfile, 'wb') as encrypted_file:
         encrypted_file.write(encryptedFile)
         print("fichier chiffré")
-        # Lire la clé depuis le fichier
-        with open('mykey.key', 'rb') as filekeyD:
-            keyD = filekeyD.read()
-            
-            fernetDe = Fernet(keyD)
-            print("clé lue")
-            # Décrypter le fichier
-            with open(decfile, 'rb') as enc_file:
-                encrypted = enc_file.read()
-                print("fichier decrypté")
-                decrypted = fernetDe.decrypt(encrypted)
-        with open('ppdechiffr.png', 'wb') as dec_file:
-            dec_file.write(decrypted)
-
+def decaes(fileenc,decpath,mail):
+# Lire la clé depuis le fichier
+    with open('mykey.key', 'rb') as filekeyD:
+        keyD = filekeyD.read()
+    
+        fernetDe = Fernet(keyD)
+        print("clé lue")
+        # Décrypter le fichier
+        with open(fileenc, 'rb') as enc_file:
+            encrypted = enc_file.read()
+            print("fichier decrypté")
+            decrypted = fernetDe.decrypt(encrypted)
+            with open(decfile, 'wb') as dec_file:
+                dec_file.write(decrypted)
